@@ -33,3 +33,6 @@ jobs:
           artifacts: "out/*"
           token: ${{ secrets.GITHUB_TOKEN  }}
           bodyFile: "CHANGELOG.md"
+          generateReleaseNotes: true # 自动生成 Release 说明
+          draft: false # 发布 Release,而不是作为草稿
+          prerelease: false # 发布正式版 Release,而不是预发布版
