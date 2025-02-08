@@ -18,7 +18,6 @@ jobs:
         with:
           distribution: 'corretto'
           java-version: '17'
-          # 启用 Maven 依赖缓存，以提高构建速度
           cache: 'maven'
       - name: Build executable
         shell: powershell
@@ -29,10 +28,8 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          # 表示要上传到 Release 的产出文件。这可能是单个路径或以逗号分隔的路径列表（或 globs）
           artifacts: "out/*"
-          token: ${{ secrets.GITHUB_TOKEN  }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           bodyFile: "CHANGELOG.md"
-          generateReleaseNotes: true # 自动生成 Release 说明
-          draft: false # 发布 Release,而不是作为草稿
-          prerelease: false # 发布正式版 Release,而不是预发布版
+          allowUpdates: true
+          removeArtifacts: true
